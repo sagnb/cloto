@@ -1,0 +1,46 @@
+.NavBar{
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .LinksContainer{
+    background-color: var(--background-light);
+    height: 100vh;
+    width: 50px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+
+
+    .Link{
+      display: flex;
+      height: 6%;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      color: var(--caption);
+      font-size: 30px;
+      position: relative;
+      box-sizing: border-box;
+      border-left: 2px solid;
+      border-color: var(--background-light);
+    }
+  
+    .SelectedLink{
+      display: flex;
+      height: 6%;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      color: var(--text);
+      font-size: 30px;
+      position: relative;
+      box-sizing: border-box;
+      border-left: 2px solid;
+    }
+  }
+
+}
