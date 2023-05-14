@@ -1,4 +1,8 @@
 import moment from 'moment'
+import { useNavigate } from 'react-router-dom'
+
+import WeekDaysNames from '../WeekDaysNames'
+import WeekRow from '../WeekRow'
 
 import './styles.scss'
 
@@ -10,12 +14,19 @@ type MonthCardProps = {
 export default function MonthCard(props: MonthCardProps){
   const month = moment().locale('pt').month(props.monthName).year(props.currentYear)
   const weekDaysNames = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
-  const startDayOfMonth = month.clone().startOf('month').startOf('week')
-  const endDayOfMonth = month.clone().endOf('month').startOf('week')
-  const day = startDayOfMonth.clone().subtract(1, 'day')
+  const startDayOfCard = month.clone().startOf('month').startOf('week')
+  const endDayOfCard = month.clone().endOf('month').startOf('week')
+  const day = startDayOfCard.clone().subtract(1, 'day')
   const weeksOfMonth = []
+  const currentDay = moment()
 
-  while(day.isBefore(endDayOfMonth, 'day')){
+  const navigate = useNavigate()
+
+  const viewMonth = () => {
+    navigate('/month/' + month.format('MMMM YYYY'))
+  }
+
+  while(day.isBefore(endDayOfCard, 'day')){
     weeksOfMonth.push(
       Array(7)
         .fill(0)
@@ -23,22 +34,19 @@ export default function MonthCard(props: MonthCardProps){
     )
   }
 
-  console.log(startDayOfMonth.format('DD'))
-
   return (
-    <div className="MonthCard">
-      <h1>{month.format('MMMM')}</h1>
-      <div className='WeekContainer'>
-        {weekDaysNames.map((dayName, index) => <div key={`year${props.currentYear}month${props.monthName}dayName${index.toString()}`} className='DayContainer'><span>{dayName}</span></div>)}
+    <div className='MonthCard'>
+      <div className='MonthNameContainer' onClick={viewMonth}>
+        <h1>{month.format('MMMM')}</h1>
       </div>
 
-      {weeksOfMonth.map((week, index) => (
-        <div key={`year${props.currentYear}month${props.monthName}week${index.toString()}`} className='WeekContainer'>
-          {week.map(day => (
-            <div key={`year${props.currentYear}month${props.monthName}week${index.toString()}day${day.format('DD').toString()}`} className='DayContainer'><span>{day.format('DD').toString()}</span></div>
-          ))}
-        </div>
-      ))}
+      <WeekDaysNames daysNames={weekDaysNames} currentYear={props.currentYear} monthName={props.monthName}/>
+
+      {
+        weeksOfMonth.map((week, index) => (
+          <WeekRow key={`year${props.currentYear}month${props.monthName}week${index.toString()}`} currentYear={props.currentYear} month={month} days={week} index={index} currentDay={currentDay}/>
+        ))
+      }
     </div>
   )
 }

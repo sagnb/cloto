@@ -1,0 +1,33 @@
+.Month{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 30px;
+
+  .MonthDaysContainer{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 30px;
+  }
+
+  .WeekDaysNames{
+    margin-top: 40px;
+    height: 20%;
+  }
+
+  .WeekRow{
+    height: 100px;
+
+  }
+
+  .WeekRow:hover{
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+  }
+}

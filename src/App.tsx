@@ -6,6 +6,7 @@ import {
 import Home from './pages/Home'
 import Calendar from './pages/Calendar'
 import Days from './pages/Days'
+import Month from './pages/Month'
 import ErrorPage from './pages/ErrorPage'
 
 import './styles/global.scss'
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: '/calendar/:id',
         element: <Days/>
+      },
+      {
+        path: '/month/:monthDisplay',
+        element: <Month/>
       }
     ]
   },
