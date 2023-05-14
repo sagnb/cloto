@@ -10,6 +10,14 @@
   min-width: 20%;
   max-width: 50%;
 
+  .MonthNameContainer{
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .WeekContainer{
     display: flex;
     flex-direction: row;
@@ -25,6 +33,33 @@
       margin-left: auto;
       margin-right: auto;
       flex: 1;
+
+      .DayOutOfMonth{
+        color: var(--caption);
+      }
+
+      .DayOfMonth{
+        color: var(--text)
+      }
+    }
+
+    .CurrentDayContainer{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+      margin-right: auto;
+      flex: 1;
+      background-color: var(--primary);
+      border-radius: 6px;
+
+      .DayOutOfMonth{
+        color: var(--caption);
+      }
+
+      .DayOfMonth{
+        color: var(--text)
+      }
     }
   }
 }
