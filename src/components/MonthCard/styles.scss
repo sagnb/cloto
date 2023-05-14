@@ -18,6 +18,10 @@
     align-items: center;
   }
 
+  .MonthNameContainer:hover{
+    color: var(--primary);
+  }
+
   .WeekContainer{
     display: flex;
     flex-direction: row;
