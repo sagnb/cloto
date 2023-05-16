@@ -12,7 +12,6 @@ type DayCellProps = {
 export default function DayCell(props: DayCellProps){
   const getDayContainerClass = (day: moment.Moment, currentDay: moment.Moment) => {
     if(day.format('DD MMMM YYYY') == currentDay.format('DD MMMM YYYY') ){
-      console.log('currentDay')
       return 'CurrentDayCell'
     }
     else

@@ -23,11 +23,16 @@
 
   .WeekRow{
     height: 100px;
-
+    cursor: pointer;
   }
 
   .WeekRow:hover{
-    border: 2px solid var(--primary);
-    border-radius: 10px;
+    .DayOfMonth{
+      color: var(--primary);
+    }
+    
+    .CurrentDayCell{
+      background-color: var(--text);
+    }
   }
 }
