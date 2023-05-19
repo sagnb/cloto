@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import moment from 'moment'
 
 import WeekDaysNames from '../../components/WeekDaysNames'
@@ -8,7 +9,7 @@ import './styles.scss'
 
 export default function Month(){
   const { monthDisplay } = useParams()
-  const [ monthName, year] = monthDisplay?monthDisplay.split(' '):['', -1]
+  const [ monthName, year] = monthDisplay?monthDisplay.split(' '):['', '-1']
   const currentMonth = moment().month(monthName).year(Number(year))
   const weekDaysNames = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
   const startDayOfCard = currentMonth.clone().startOf('month').startOf('week')
@@ -16,6 +17,8 @@ export default function Month(){
   const day = startDayOfCard.clone().subtract(1, 'day')
   const weeksOfMonth = []
   const currentDay = moment()
+
+  const navigate = useNavigate()
 
   while(day.isBefore(endDayOfCard, 'day')){
     weeksOfMonth.push(
@@ -36,7 +39,9 @@ export default function Month(){
 
         {
           weeksOfMonth.map((week, index) => (
-            <WeekRow key={`year${Number(year)}month${monthName}week${index.toString()}`} currentYear={Number(year)} month={currentMonth} days={week} index={index} currentDay={currentDay}/>
+            <WeekRow key={`year${Number(year)}month${monthName}week${index.toString()}`} currentYear={Number(year)} month={currentMonth} days={week} index={index} currentDay={currentDay} onClickWeek={()=>{
+              navigate(`/week/${week[0].format('W')} ${currentMonth.format('MMMM YYYY')}`)
+            }}/>
           ))
         }
       </div>

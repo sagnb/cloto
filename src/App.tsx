@@ -5,7 +5,7 @@ import {
 
 import Home from './pages/Home'
 import Calendar from './pages/Calendar'
-import Days from './pages/Days'
+import Week from './pages/Week'
 import Month from './pages/Month'
 import ErrorPage from './pages/ErrorPage'
 
@@ -22,13 +22,13 @@ const router = createBrowserRouter([
         element: <Calendar/>
       },
       {
-        path: '/calendar/:id',
-        element: <Days/>
-      },
-      {
         path: '/month/:monthDisplay',
         element: <Month/>
-      }
+      },
+      {
+        path: '/week/:weekDisplay',
+        element: <Week/>
+      },
     ]
   },
 ])
