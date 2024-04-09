@@ -10,7 +10,7 @@ import './styles.scss'
 export default function Week(){
   const { weekDisplay } = useParams()
   const [ week, month, year ] = weekDisplay?weekDisplay.split(' '):['-1', '',  '-1']
-  const currentWeek = moment().week(Number(week)+1).year(Number(year))
+  const currentWeek = moment().week(Number(week)).year(Number(year))
   const currentMonth = moment().month(month).year(Number(year))
   const startDay = currentWeek.clone().startOf('week')
   const day = startDay.clone().subtract(1, 'day')
@@ -31,7 +31,7 @@ export default function Week(){
         <WeekRow currentYear={Number(year)} month={currentMonth} days={weekDays} index={Number(week+year)} currentDay={currentDay}/>
 
         <div className='DayColumnsContainer'>
-          { weekDays.map(day => <DayColumn key={day.format('DD MMMM YYYY') + 'DayColumn'}/>) }
+          { weekDays.map(day => <DayColumn key={day.format('DD MMMM YYYY') + 'DayColumn'} currentYear={Number(year)} month={currentMonth} day={day} weekIndex={Number(week)} />) }
         </div>
       </div>
     </div>

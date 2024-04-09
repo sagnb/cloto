@@ -18,6 +18,21 @@ export default function Month(){
   const weeksOfMonth = []
   const currentDay = moment()
 
+  const isSameMonth = (day: moment.Moment, month: moment.Moment): boolean => {
+    if(day.format('MMMM') == month.format('MMMM'))
+      return true
+    else
+      return false
+  }
+
+  const getWeekIndex = (daysOfWeek: moment.Moment[]): number => {
+    for (let index=0; index < daysOfWeek.length; index++){
+      if(isSameMonth(daysOfWeek[index], currentMonth))
+        return Number(daysOfWeek[index].format('W'))
+    }
+    return Number(daysOfWeek[0].format('W'))
+  }
+
   const navigate = useNavigate()
 
   while(day.isBefore(endDayOfCard, 'day')){
@@ -40,7 +55,7 @@ export default function Month(){
         {
           weeksOfMonth.map((week, index) => (
             <WeekRow key={`year${Number(year)}month${monthName}week${index.toString()}`} currentYear={Number(year)} month={currentMonth} days={week} index={index} currentDay={currentDay} onClickWeek={()=>{
-              navigate(`/week/${week[0].format('W')} ${currentMonth.format('MMMM YYYY')}`)
+              navigate(`/week/${getWeekIndex(week)} ${currentMonth.format('MMMM YYYY')}`)
             }}/>
           ))
         }
