@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage message='Error 404'></ErrorPage>,
     children: [
       {
-        path: '/calendar',
+        path: '/',
         element: <Calendar/>
       },
       {
